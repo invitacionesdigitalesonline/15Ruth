@@ -919,6 +919,24 @@
       });
 
       animGaleria.play();
+
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const photoStrip = document.querySelector('.photo-strip');
+      
+      let counter = 0;
+      const photoWidth = 300 + 10; // Ancho de la foto más el espacio entre fotos
+      
+      nextBtn.addEventListener('click', () => {
+        counter = (counter + 1) % 16; // 16 es la cantidad de imágenes, ajusta si agregas más
+        photoStrip.style.transform = `translateX(${-photoWidth * counter}px)`;
+      });
+      
+      prevBtn.addEventListener('click', () => {
+        counter = (counter - 1 + 16) % 16; // 16 es la cantidad de imágenes, ajusta si agregas más
+        photoStrip.style.transform = `translateX(${-photoWidth * counter}px)`;
+      });
+
     </script>
 
     <!-- Animacion Musica -->
