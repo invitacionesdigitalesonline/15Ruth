@@ -920,28 +920,25 @@
 
       animGaleria.play();
 
-      let counter = 0;
-      const photoWidth = 300 + 10; // Ancho de la foto más el espacio entre fotos
-      let photoStrip = document.querySelector('.photo-strip'); // Aquí se declara la variable una sola vez
-      
-      function moveCarousel() {
-        counter = (counter + 1) % 16; // 16 es la cantidad de imágenes, ajusta si agregas más
-        photoStrip.style.transform = `translateX(${-photoWidth * counter}px)`;
-      }
-      
-      let carouselInterval = setInterval(moveCarousel, 3000); // Cambia de imagen cada 3 segundos (3000 milisegundos)
-      
-      // Detener el carrusel al pasar el mouse sobre las imágenes
-      photoStrip.addEventListener('mouseenter', () => {
-        clearInterval(carouselInterval);
-      });
-      
-      // Reanudar el carrusel al quitar el mouse de las imágenes
-      photoStrip.addEventListener('mouseleave', () => {
-        carouselInterval = setInterval(moveCarousel, 3000);
-      });
+const photoStrip = document.querySelector('.photo-strip');
+let counter = 0;
+const photoWidth = 300 + 10; // Ancho de la foto más el espacio entre fotos
+const numImages = 16; // Actualiza este número si agregas o quitas imágenes
 
+function moveCarousel() {
+  counter = (counter + 1) % numImages;
+  photoStrip.style.transform = `translateX(${-photoWidth * counter}px)`;
+}
 
+const carouselInterval = setInterval(moveCarousel, 3000);
+
+photoStrip.addEventListener('mouseenter', () => {
+  clearInterval(carouselInterval);
+});
+
+photoStrip.addEventListener('mouseleave', () => {
+  carouselInterval = setInterval(moveCarousel, 3000);
+});
 
     </script>
 
