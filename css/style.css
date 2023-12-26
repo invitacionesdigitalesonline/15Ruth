@@ -1759,7 +1759,7 @@
   display: flex;
   gap: 10px; /* Espacio entre las fotos */
   transition: transform 1s ease; /* Ajusta la duración de la transición a tu gusto */
-  width: calc(300px * 16 + 150px); /* Ancho total de las imágenes (300px * cantidad de imágenes) + margen extra */
+  width: fit-content; /* Cambia el ancho para ajustarse al contenido */
 }
   
   .photo-strip img {
