@@ -920,22 +920,27 @@
 
       animGaleria.play();
 
-      const prevBtn = document.getElementById('prevBtn');
-      const nextBtn = document.getElementById('nextBtn');
       const photoStrip = document.querySelector('.photo-strip');
-      
-      let counter = 0;
       const photoWidth = 300 + 10; // Ancho de la foto más el espacio entre fotos
+      let counter = 0;
       
-      nextBtn.addEventListener('click', () => {
+      function moveCarousel() {
         counter = (counter + 1) % 16; // 16 es la cantidad de imágenes, ajusta si agregas más
         photoStrip.style.transform = `translateX(${-photoWidth * counter}px)`;
+      }
+      
+      const carouselInterval = setInterval(moveCarousel, 3000); // Cambia de imagen cada 3 segundos (3000 milisegundos)
+      
+      // Detener el carrusel al pasar el mouse sobre las imágenes
+      photoStrip.addEventListener('mouseenter', () => {
+        clearInterval(carouselInterval);
       });
       
-      prevBtn.addEventListener('click', () => {
-        counter = (counter - 1 + 16) % 16; // 16 es la cantidad de imágenes, ajusta si agregas más
-        photoStrip.style.transform = `translateX(${-photoWidth * counter}px)`;
+      // Reanudar el carrusel al quitar el mouse de las imágenes
+      photoStrip.addEventListener('mouseleave', () => {
+        carouselInterval = setInterval(moveCarousel, 3000);
       });
+
 
     </script>
 
